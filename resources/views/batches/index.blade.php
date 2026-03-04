@@ -96,9 +96,7 @@
                 </table>
             </div>
 
-            <div class="px-20 py-12">
-                {{ $batches->links('pagination::bootstrap-5') }}
-            </div>
+                {{ $batches->links() }}
 
         </div>
     </div>

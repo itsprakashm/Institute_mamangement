@@ -115,9 +115,7 @@
                 </table>
             </div>
 
-            <div class="px-20 py-12">
-                {{ $students->links('pagination::bootstrap-5') }}
-            </div>
+                {{ $students->links() }}
 
         </div>
     </div>

@@ -58,7 +58,7 @@
 </div>
 
 <div class="mt-16">
-    {{ $announcements->links('pagination::bootstrap-5') }}
+    {{ $announcements->links() }}
 </div>
 
 @endsection

@@ -92,9 +92,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="px-20 py-12">
-            {{ $fees->links('pagination::bootstrap-5') }}
-        </div>
+            {{ $fees->links() }}
     </div>
 </div>
 @endif

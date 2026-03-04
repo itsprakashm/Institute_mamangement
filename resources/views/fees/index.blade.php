@@ -56,9 +56,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="px-20 py-12">
-            {{ $structures->links('pagination::bootstrap-5') }}
-        </div>
+            {{ $structures->links() }}
     </div>
 </div>
 
