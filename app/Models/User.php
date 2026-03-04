@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,28 +39,42 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the roles of this user
+     * Many-to-many role mapping (primary RBAC source).
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsToMany(Role::class, 'role_user')->withTimestamps();
     }
 
     /**
-     * Check if user has a specific role
+     * Legacy single role mapping for backward compatibility.
+     */
+    public function primaryRole()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    /**
+     * Check if user has a specific role.
      */
     public function hasRole($roleName)
     {
-        return $this->roles()->where('name', $roleName)->exists();
+        $roleNames = is_array($roleName) ? $roleName : [$roleName];
+
+        if ($this->roles()->whereIn('name', $roleNames)->exists()) {
+            return true;
+        }
+
+        return $this->primaryRole()->whereIn('name', $roleNames)->exists();
     }
 
     /**
-     * Check if user has a specific permission (via role)
+     * Check if user has a specific permission (via role).
      */
     public function hasPermission($permissionName)
     {
         if ($this->hasRole('super_admin')) {
-            return true; // Super admin has all permissions
+            return true;
         }
 
         foreach ($this->roles as $role) {
@@ -69,23 +82,23 @@ class User extends Authenticatable
                 return true;
             }
         }
+
+        $legacyRole = $this->primaryRole;
+        if ($legacyRole && $legacyRole->hasPermission($permissionName)) {
+            return true;
+        }
+
         return false;
     }
 
-    /**
-     * Check if user is active
-     */
     public function isActive()
     {
         return $this->status === 'active';
     }
 
-    /**
-     * Get display role name
-     */
     public function getRoleNameAttribute()
     {
-        $role = $this->roles->first();
+        $role = $this->roles->first() ?: $this->primaryRole;
         return $role ? $role->display_name : 'No Role';
     }
 }
