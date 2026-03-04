@@ -12,15 +12,15 @@ class Role extends Model
     protected $fillable = ['name', 'display_name', 'description', 'is_active'];
 
     /**
-     * Users with this role
+     * Users with this role.
      */
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class, 'role_user')->withTimestamps();
     }
 
     /**
-     * Permissions assigned to this role
+     * Permissions assigned to this role.
      */
     public function permissions()
     {
@@ -28,7 +28,7 @@ class Role extends Model
     }
 
     /**
-     * Check if role has a specific permission
+     * Check if role has a specific permission.
      */
     public function hasPermission($permissionName)
     {

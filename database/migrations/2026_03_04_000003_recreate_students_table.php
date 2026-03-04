@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class RecreateStudentsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::disableForeignKeyConstraints();
@@ -30,8 +25,6 @@ class RecreateStudentsTable extends Migration
             $table->string('guardian_name')->nullable();
             $table->string('guardian_phone')->nullable();
             $table->text('address')->nullable();
-            $table->foreignId('class_id')->nullable()->constrained('classes')->onDelete('set null');
-            $table->foreignId('batch_id')->nullable()->constrained('batches')->onDelete('set null');
             $table->enum('status', ['active', 'inactive', 'deleted'])->default('active');
             $table->timestamps();
         });

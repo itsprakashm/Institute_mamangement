@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\GenerateMonthlyFees::class,
+        \App\Console\Commands\SendFeeReminders::class,
     ];
 
     /**
@@ -24,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('fees:generate-monthly')->monthlyOn(1, '01:00');
+        $schedule->command('fees:send-reminders')->dailyAt('09:00');
     }
 
     /**

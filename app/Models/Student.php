@@ -20,8 +20,6 @@ class Student extends Model
         'guardian_name',
         'guardian_phone',
         'address',
-        'class_id',
-        'batch_id',
         'status',
     ];
 
@@ -39,14 +37,9 @@ class Student extends Model
         return $this->user ? $this->user->email : 'N/A';
     }
 
-    public function studentClass()
+    public function batches()
     {
-        return $this->belongsTo(ClassModel::class, 'class_id');
-    }
-
-    public function batch()
-    {
-        return $this->belongsTo(Batch::class, 'batch_id');
+        return $this->belongsToMany(Batch::class, 'student_batches')->withTimestamps();
     }
 
     public static function generateAdmissionNo()
