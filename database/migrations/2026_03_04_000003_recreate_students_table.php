@@ -13,11 +13,14 @@ class RecreateStudentsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('student_qualifications');
         Schema::dropIfExists('students');
+        Schema::enableForeignKeyConstraints();
 
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('admission_no')->unique();
             $table->string('first_name');
             $table->string('last_name')->nullable();

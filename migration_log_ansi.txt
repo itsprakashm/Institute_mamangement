@@ -1,0 +1,62 @@
+Dropped all tables successfully.
+Migration table created successfully.
+Migrating: 2014_10_11_000000_create_roles_table
+Migrated:  2014_10_11_000000_create_roles_table (13.68ms)
+Migrating: 2014_10_11_100000_create_permissions_table
+Migrated:  2014_10_11_100000_create_permissions_table (13.45ms)
+Migrating: 2014_10_11_200000_create_role_permission_table
+Migrated:  2014_10_11_200000_create_role_permission_table (72.11ms)
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (49.72ms)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (60.79ms)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (30.17ms)
+Migrating: 2024_01_02_000001_create_courses_table
+Migrated:  2024_01_02_000001_create_courses_table (8.44ms)
+Migrating: 2024_01_02_000002_create_sections_table
+Migrated:  2024_01_02_000002_create_sections_table (7.48ms)
+Migrating: 2024_01_02_000003_create_subjects_table
+Migrated:  2024_01_02_000003_create_subjects_table (6.97ms)
+Migrating: 2024_01_02_000004_create_batches_table
+Migrated:  2024_01_02_000004_create_batches_table (66.42ms)
+Migrating: 2024_01_03_000001_create_students_table
+Migrated:  2024_01_03_000001_create_students_table (178.29ms)
+Migrating: 2024_01_03_000002_create_student_qualifications_table
+Migrated:  2024_01_03_000002_create_student_qualifications_table (24.61ms)
+Migrating: 2026_03_04_122639_create_role_user_table
+Migrated:  2026_03_04_122639_create_role_user_table (78.81ms)
+Migrating: 2026_03_04_122656_create_classes_table
+Migrated:  2026_03_04_122656_create_classes_table (45.86ms)
+Migrating: 2026_03_04_122734_create_attendance_table
+Migrated:  2026_03_04_122734_create_attendance_table (74.52ms)
+Migrating: 2026_03_04_122759_create_fee_structures_table
+Migrated:  2026_03_04_122759_create_fee_structures_table (33.34ms)
+Migrating: 2026_03_04_122817_create_student_fees_table
+Migrated:  2026_03_04_122817_create_student_fees_table (37.11ms)
+Migrating: 2026_03_04_123017_create_announcements_table
+Migrated:  2026_03_04_123017_create_announcements_table (26.08ms)
+Migrating: 2026_03_04_123121_create_activity_logs_table
+Migrated:  2026_03_04_123121_create_activity_logs_table (26.38ms)
+Migrating: 2026_03_04_123944_recreate_students_table
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (SQL: drop table if exists `students`)
+
+  at D:\xampp\htdocs\manpreet\manpreetBhatiaInstitue\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708▕         // If an exception occurs when attempting to run a query, we'll format the error
+    709▕         // message to include the bindings with SQL, which will make this exception a
+    710▕         // lot more helpful to the developer instead of just the database's errors.
+    711▕         catch (Exception $e) {
+  ➜ 712▕             throw new QueryException(
+    713▕                 $query, $this->prepareBindings($bindings), $e
+    714▕             );
+    715▕         }
+    716▕     }
+
+  1   D:\xampp\htdocs\manpreet\manpreetBhatiaInstitue\vendor\laravel\framework\src\Illuminate\Database\Connection.php:501
+      PDOException::("SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails")
+
+  2   D:\xampp\htdocs\manpreet\manpreetBhatiaInstitue\vendor\laravel\framework\src\Illuminate\Database\Connection.php:501
+      PDOStatement::execute()

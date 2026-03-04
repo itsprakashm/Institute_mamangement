@@ -47,6 +47,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Admission No</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Login Email</th>
                             <th scope="col">Class</th>
                             <th scope="col">Date of Birth</th>
                             <th scope="col">Gender</th>
@@ -68,6 +69,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <td><span class="text-secondary-light">{{ $student->email }}</span></td>
                             <td>{{ $student->studentClass->name ?? 'N/A' }}</td>
                             <td>{{ $student->dob ? \Carbon\Carbon::parse($student->dob)->format('d M Y') : 'N/A' }}</td>
                             <td>{{ ucfirst($student->gender) }}</td>

@@ -10,6 +10,7 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'admission_no',
         'first_name',
         'last_name',
@@ -27,6 +28,16 @@ class Student extends Model
     protected $casts = [
         'dob' => 'date',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getEmailAttribute()
+    {
+        return $this->user ? $this->user->email : 'N/A';
+    }
 
     public function studentClass()
     {
