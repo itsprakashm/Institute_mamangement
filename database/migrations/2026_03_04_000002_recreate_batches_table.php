@@ -16,8 +16,7 @@ class RecreateBatchesTable extends Migration
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->string('name');
-            // FK to teachers is added later (after teachers table migration runs)
-            $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->foreignId('teacher_id')->nullable()->constrained('teachers')->onDelete('set null');
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->boolean('is_active')->default(true);
