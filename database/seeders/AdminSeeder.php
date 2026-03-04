@@ -11,7 +11,6 @@ class AdminSeeder extends Seeder
 {
     public function run()
     {
-        // Create default roles
         $roles = [
             ['name' => 'super_admin', 'display_name' => 'Super Admin', 'description' => 'Full system access'],
             ['name' => 'admin',       'display_name' => 'Admin',       'description' => 'Administrative access'],
@@ -26,10 +25,9 @@ class AdminSeeder extends Seeder
             Role::firstOrCreate(['name' => $role['name']], $role);
         }
 
-        // Create default Super Admin user
         $superAdminRole = Role::where('name', 'super_admin')->first();
 
-        User::firstOrCreate(
+        $user = User::firstOrCreate(
             ['email' => 'admin@mbclasses.com'],
             [
                 'name'     => 'Super Admin',
@@ -40,6 +38,8 @@ class AdminSeeder extends Seeder
                 'status'   => 'active',
             ]
         );
+
+        $user->roles()->syncWithoutDetaching([$superAdminRole->id]);
 
         echo "✅ Roles created: " . count($roles) . "\n";
         echo "✅ Super Admin user: admin@mbclasses.com / admin123\n";

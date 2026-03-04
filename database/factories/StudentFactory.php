@@ -3,8 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Student;
-use App\Models\ClassModel;
-use App\Models\Batch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StudentFactory extends Factory
@@ -23,8 +21,6 @@ class StudentFactory extends Factory
             'guardian_name' => $this->faker->name,
             'guardian_phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
-            'class_id' => ClassModel::factory(),
-            'batch_id' => Batch::factory(),
             'status' => 'active',
         ];
     }

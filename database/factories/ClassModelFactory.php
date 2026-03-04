@@ -2,18 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\ClassModel;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClassModelFactory extends Factory
 {
-    protected $model = ClassModel::class;
+    protected $model = Course::class;
 
     public function definition()
     {
         return [
-            'name' => 'Grade ' . $this->faker->numberBetween(1, 12) . ' ' . $this->faker->randomElement(['A', 'B', 'C', 'Science', 'Maths']),
+            'name' => 'Course ' . $this->faker->unique()->numberBetween(1, 120),
+            'code' => strtoupper($this->faker->bothify('CRS###')),
             'description' => $this->faker->sentence,
+            'is_active' => true,
         ];
     }
 }

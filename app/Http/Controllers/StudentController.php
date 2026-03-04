@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
-use App\Models\ClassModel;
+use App\Models\Course;
 use App\Models\Batch;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with(['studentClass', 'batch'])->paginate(10);
+        $students = Student::with('batches.course')->paginate(10);
         return view('students.index', compact('students'));
     }
 
     public function create()
     {
-        $classes = ClassModel::all();
-        $batches = Batch::all();
+        $classes = Course::all();
+        $batches = Batch::with('course')->get();
         $admissionNo = Student::generateAdmissionNo();
         return view('students.create', compact('classes', 'batches', 'admissionNo'));
     }
@@ -34,37 +34,35 @@ class StudentController extends Controller
             'guardian_name' => 'nullable|string|max:191',
             'guardian_phone' => 'nullable|string|max:15',
             'address' => 'nullable|string',
-            'class_id' => 'nullable|exists:classes,id',
-            'batch_id' => 'nullable|exists:batches,id',
+            'batches' => 'nullable|array',
+            'batches.*' => 'exists:batches,id',
             'status' => 'required|in:active,inactive,deleted',
         ]);
 
-        $data = $request->except('photo');
+        $data = $request->except(['photo', 'batches']);
         $data['admission_no'] = Student::generateAdmissionNo();
 
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = 'student_' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/students'), $filename);
-            $data['photo'] = 'uploads/students/' . $filename;
+            $data['photo'] = $request->file('photo')->store('students', 'public');
         }
 
-        Student::create($data);
+        $student = Student::create($data);
+        $student->batches()->sync($request->input('batches', []));
 
         return redirect()->route('students.index')->with('success', 'Student admitted successfully!');
     }
 
     public function show($id)
     {
-        $student = Student::with(['studentClass', 'batch'])->findOrFail($id);
+        $student = Student::with('batches.course')->findOrFail($id);
         return view('students.show', compact('student'));
     }
 
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
-        $classes = ClassModel::all();
-        $batches = Batch::all();
+        $student = Student::with('batches')->findOrFail($id);
+        $classes = Course::all();
+        $batches = Batch::with('course')->get();
         return view('students.edit', compact('student', 'classes', 'batches'));
     }
 
@@ -81,21 +79,19 @@ class StudentController extends Controller
             'guardian_name' => 'nullable|string|max:191',
             'guardian_phone' => 'nullable|string|max:15',
             'address' => 'nullable|string',
-            'class_id' => 'nullable|exists:classes,id',
-            'batch_id' => 'nullable|exists:batches,id',
+            'batches' => 'nullable|array',
+            'batches.*' => 'exists:batches,id',
             'status' => 'required|in:active,inactive,deleted',
         ]);
 
-        $data = $request->except('photo');
+        $data = $request->except(['photo', 'batches']);
 
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = 'student_' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/students'), $filename);
-            $data['photo'] = 'uploads/students/' . $filename;
+            $data['photo'] = $request->file('photo')->store('students', 'public');
         }
 
         $student->update($data);
+        $student->batches()->sync($request->input('batches', []));
 
         return redirect()->route('students.index')->with('success', 'Student updated successfully!');
     }

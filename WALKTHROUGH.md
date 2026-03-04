@@ -35,3 +35,8 @@ All modules of the Smart Institute Management System have been successfully impl
 *   **Routes**: All non-essential routes in `web.php` have been commented out to prevent unauthorized access and maintain focus on the core modules.
 *   **Sidebar**: Placeholder navigation items have been hidden (commented out) in `sidebar.blade.php`, leaving a clean, focused menu for the 10 core modules.
 
+
+
+## Student Photo Storage
+- Store student photos in `storage/app/public/students`.
+- Run `php artisan storage:link` to serve files via `public/storage`.

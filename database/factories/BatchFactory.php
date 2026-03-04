@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Batch;
-use App\Models\ClassModel;
-use App\Models\User;
+use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BatchFactory extends Factory
@@ -14,9 +14,9 @@ class BatchFactory extends Factory
     public function definition()
     {
         return [
-            'class_id' => ClassModel::factory(),
+            'course_id' => Course::factory(),
             'name' => $this->faker->randomElement(['Morning', 'Afternoon', 'Evening']) . ' Batch',
-            'teacher_id' => User::factory(),
+            'teacher_id' => Teacher::factory(),
             'start_time' => $this->faker->time('H:i'),
             'end_time' => $this->faker->time('H:i'),
             'is_active' => true,
