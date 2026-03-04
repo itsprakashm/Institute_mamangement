@@ -9,23 +9,23 @@ class Batch extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['class_id', 'name', 'teacher_id', 'start_time', 'end_time', 'is_active'];
+    protected $fillable = ['course_id', 'name', 'teacher_id', 'start_time', 'end_time', 'is_active'];
 
     protected $casts = ['is_active' => 'boolean'];
 
-    public function studentClass()
+    public function course()
     {
-        return $this->belongsTo(ClassModel::class, 'class_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     public function teacher()
     {
-        return $this->belongsTo(User::class, 'teacher_id');
+        return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
     public function students()
     {
-        return $this->hasMany(Student::class);
+        return $this->belongsToMany(Student::class, 'student_batches')->withTimestamps();
     }
 
     public function scopeActive($query)

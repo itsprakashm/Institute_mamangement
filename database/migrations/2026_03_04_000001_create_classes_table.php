@@ -6,28 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateClassesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->text('description')->nullable();
-            $table->timestamps();
+        Schema::table('courses', function (Blueprint $table) {
+            if (!Schema::hasColumn('courses', 'description')) {
+                $table->text('description')->nullable();
+            }
+            $table->unique('name');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropUnique(['name']);
+        });
     }
 }

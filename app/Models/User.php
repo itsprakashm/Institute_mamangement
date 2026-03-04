@@ -24,6 +24,21 @@ class User extends Authenticatable
         'last_login_at' => 'datetime',
     ];
 
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function deviceTokens()
+    {
+        return $this->hasMany(DeviceToken::class);
+    }
+
     /**
      * Get the roles of this user
      */

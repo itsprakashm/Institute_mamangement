@@ -9,10 +9,10 @@ class FeeStructure extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['class_id', 'monthly_fee', 'description'];
+    protected $fillable = ['course_id', 'fee_type', 'amount', 'description'];
 
-    public function studentClass()
+    public function course()
     {
-        return $this->belongsTo(ClassModel::class, 'class_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }

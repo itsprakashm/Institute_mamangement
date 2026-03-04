@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
-use App\Models\ClassModel;
 
 class ClassController extends Controller
 {
     public function index()
     {
-        $classes = ClassModel::paginate(10);
+        $classes = Course::paginate(10);
         return view('classes.index', compact('classes'));
     }
 
@@ -21,39 +21,39 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:191|unique:classes',
+            'name' => 'required|string|max:191|unique:courses,name',
             'description' => 'nullable|string',
         ]);
 
-        ClassModel::create($request->all());
+        Course::create($request->only('name', 'description'));
 
-        return redirect()->route('classes.index')->with('success', 'Class created successfully!');
+        return redirect()->route('classes.index')->with('success', 'Course created successfully!');
     }
 
     public function edit($id)
     {
-        $class = ClassModel::findOrFail($id);
+        $class = Course::findOrFail($id);
         return view('classes.edit', compact('class'));
     }
 
     public function update(Request $request, $id)
     {
-        $class = ClassModel::findOrFail($id);
+        $class = Course::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:191|unique:classes,name,' . $class->id,
+            'name' => 'required|string|max:191|unique:courses,name,' . $class->id,
             'description' => 'nullable|string',
         ]);
 
-        $class->update($request->all());
+        $class->update($request->only('name', 'description'));
 
-        return redirect()->route('classes.index')->with('success', 'Class updated successfully!');
+        return redirect()->route('classes.index')->with('success', 'Course updated successfully!');
     }
 
     public function destroy($id)
     {
-        $class = ClassModel::findOrFail($id);
+        $class = Course::findOrFail($id);
         $class->delete();
-        return redirect()->route('classes.index')->with('success', 'Class deleted successfully!');
+        return redirect()->route('classes.index')->with('success', 'Course deleted successfully!');
     }
 }
