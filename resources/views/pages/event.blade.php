@@ -1,0 +1,320 @@
+@extends('layouts.master')
+
+@section('title', 'Event')
+
+@section('content')
+
+
+        <div class="breadcrumb d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
+            <div class="">
+                <span class="fw-semibold mb-4 h6 text-primary-light d-block">Event </span>
+                <div class="">
+                    <a href="{{ url('/') }}" class="text-secondary-light hover-text-primary hover-underline">Dashboard </a>
+                    <span class="text-secondary-light">/ Event</span>
+                </div>
+            </div>
+            <button type="button" class="my-sidebar-btn btn btn-primary-600 d-flex align-items-center gap-6">
+                <span class="d-flex text-md">
+                    <i class="ri-add-large-line"></i>
+                </span>
+                Add Event
+            </button>
+        </div>
+
+        <div class="mt-24">
+            <div class="row gy-4">
+                <div class="col-xxl-3 col-lg-4">
+                    <div class="card h-100 p-0">
+                        <div class="card-body p-24">
+                            <div class="mt-8">
+                                <div
+                                    class="event-item d-flex align-items-center justify-content-between gap-4 pb-16 mb-16 border border-start-0 border-end-0 border-top-0">
+                                    <div class="">
+                                        <div class="d-flex align-items-center gap-10">
+                                            <span
+                                                class="w-12-px h-12-px bg-warning-600 rounded-circle fw-medium"></span>
+                                            <span class="text-secondary-light">Today, 10:30 PM - 02:30 AM</span>
+                                        </div>
+                                        <span class="text-primary-light fw-semibold text-md mt-4">Design
+                                            Conference</span>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <iconify-icon icon="entypo:dots-three-vertical"
+                                                class="icon text-secondary-light"></iconify-icon>
+                                        </button>
+                                        <ul class="dropdown-menu p-12 border bg-base shadow">
+                                            <li>
+                                                <button type="button"
+                                                    class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalView">
+                                                    <iconify-icon icon="hugeicons:view"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    View
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="edit-sidebar-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10">
+                                                    <iconify-icon icon="lucide:edit"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Edit
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="delete-item dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalDelete">
+                                                    <iconify-icon icon="fluent:delete-24-regular"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Delete
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="event-item d-flex align-items-center justify-content-between gap-4 pb-16 mb-16 border border-start-0 border-end-0 border-top-0">
+                                    <div class="">
+                                        <div class="d-flex align-items-center gap-10">
+                                            <span
+                                                class="w-12-px h-12-px bg-success-600 rounded-circle fw-medium"></span>
+                                            <span class="text-secondary-light">Today, 10:30 PM - 02:30 AM</span>
+                                        </div>
+                                        <span class="text-primary-light fw-semibold text-md mt-4">Weekend
+                                            Festival</span>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <iconify-icon icon="entypo:dots-three-vertical"
+                                                class="icon text-secondary-light"></iconify-icon>
+                                        </button>
+                                        <ul class="dropdown-menu p-12 border bg-base shadow">
+                                            <li>
+                                                <button type="button"
+                                                    class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalView">
+                                                    <iconify-icon icon="hugeicons:view"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    View
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="edit-sidebar-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10">
+                                                    <iconify-icon icon="lucide:edit"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Edit
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="delete-item dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalDelete">
+                                                    <iconify-icon icon="fluent:delete-24-regular"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Delete
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="event-item d-flex align-items-center justify-content-between gap-4 pb-16 mb-16 border border-start-0 border-end-0 border-top-0">
+                                    <div class="">
+                                        <div class="d-flex align-items-center gap-10">
+                                            <span class="w-12-px h-12-px bg-info-600 rounded-circle fw-medium"></span>
+                                            <span class="text-secondary-light">Today, 10:30 PM - 02:30 AM</span>
+                                        </div>
+                                        <span class="text-primary-light fw-semibold text-md mt-4">Design
+                                            Conference</span>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <iconify-icon icon="entypo:dots-three-vertical"
+                                                class="icon text-secondary-light"></iconify-icon>
+                                        </button>
+                                        <ul class="dropdown-menu p-12 border bg-base shadow">
+                                            <li>
+                                                <button type="button"
+                                                    class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalView">
+                                                    <iconify-icon icon="hugeicons:view"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    View
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="edit-sidebar-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10">
+                                                    <iconify-icon icon="lucide:edit"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Edit
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="delete-item dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalDelete">
+                                                    <iconify-icon icon="fluent:delete-24-regular"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Delete
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="event-item d-flex align-items-center justify-content-between gap-4 pb-16 mb-16 border border-start-0 border-end-0 border-top-0">
+                                    <div class="">
+                                        <div class="d-flex align-items-center gap-10">
+                                            <span
+                                                class="w-12-px h-12-px bg-warning-600 rounded-circle fw-medium"></span>
+                                            <span class="text-secondary-light">Today, 10:30 PM - 02:30 AM</span>
+                                        </div>
+                                        <span class="text-primary-light fw-semibold text-md mt-4">Ultra Europe
+                                            2019</span>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <iconify-icon icon="entypo:dots-three-vertical"
+                                                class="icon text-secondary-light"></iconify-icon>
+                                        </button>
+                                        <ul class="dropdown-menu p-12 border bg-base shadow">
+                                            <li>
+                                                <button type="button"
+                                                    class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalView">
+                                                    <iconify-icon icon="hugeicons:view"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    View
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="edit-sidebar-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10">
+                                                    <iconify-icon icon="lucide:edit"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Edit
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="delete-item dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalDelete">
+                                                    <iconify-icon icon="fluent:delete-24-regular"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Delete
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="event-item d-flex align-items-center justify-content-between gap-4 pb-16 mb-16 border border-start-0 border-end-0 border-top-0">
+                                    <div class="">
+                                        <div class="d-flex align-items-center gap-10">
+                                            <span
+                                                class="w-12-px h-12-px bg-warning-600 rounded-circle fw-medium"></span>
+                                            <span class="text-secondary-light">Today, 10:30 PM - 02:30 AM</span>
+                                        </div>
+                                        <span class="text-primary-light fw-semibold text-md mt-4">Design
+                                            Conference</span>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <iconify-icon icon="entypo:dots-three-vertical"
+                                                class="icon text-secondary-light"></iconify-icon>
+                                        </button>
+                                        <ul class="dropdown-menu p-12 border bg-base shadow">
+                                            <li>
+                                                <button type="button"
+                                                    class="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalView">
+                                                    <iconify-icon icon="hugeicons:view"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    View
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="edit-sidebar-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10">
+                                                    <iconify-icon icon="lucide:edit"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Edit
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button"
+                                                    class="delete-item dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalDelete">
+                                                    <iconify-icon icon="fluent:delete-24-regular"
+                                                        class="icon text-lg line-height-1"></iconify-icon>
+                                                    Delete
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-9 col-lg-8">
+                    <div class="card h-100 p-0">
+                        <div class="card-body p-24">
+                            <div id='wrap'>
+                                <div id='calendar'></div>
+                                <div style='clear:both'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+@endsection
+
+@section('page-scripts')
+<script src="assets/js/full-calendar.js"></script>
+<script src="assets/js/flatpickr.js"></script>
+
+<script>
+    // Flat pickr or date picker js 
+    function getDatePicker(receiveID) {
+        flatpickr(receiveID, {
+            enableTime: true,
+            dateFormat: "d/m/Y H:i",
+        });
+    }
+    getDatePicker('#startDate');
+    getDatePicker('#endDate');
+
+    getDatePicker('#editstartDate');
+    getDatePicker('#editendDate');
+
+
+    // Sidebar js start
+    $('.my-sidebar-btn').on('click', function () {
+        $('.my-sidebar').addClass('active');
+        $('.overlay').addClass('active');
+    });
+    $('.close-my-sidebar, .overlay').on('click', function () {
+        $('.my-sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
+
+
+    $('.edit-sidebar-btn').on('click', function () {
+        $('.edit-sidebar').addClass('active');
+        $('.overlay').addClass('active');
+    });
+    $('.close-edit-sidebar, .overlay').on('click', function () {
+        $('.edit-sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
+    // Sidebar js end
+
+</script>
+@endsection
